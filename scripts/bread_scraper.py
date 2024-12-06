@@ -10,8 +10,9 @@ def main():
     # options.add_argument("--headless")
     driver = webdriver.Chrome(options=options)
     bread_list = ["anpan", "bagel", "waffle", "baguette", "dorayaki","pita", "sourdough"]
+    n = 100
     for bread in bread_list:
-        get_first_n_bread(50, bread, driver)
+        get_first_n_bread(n, bread, driver)
     driver.quit()
     
 
@@ -43,10 +44,10 @@ def get_first_n_bread(n, bread, driver):
             src = img.get("src")
             file_name = f"{bread}_{counter}"
             if src.startswith("https"):
-                isOk = url_to_img(src, f"../dataset/{bread}", file_name)
+                isOk = url_to_img(src, f"dataset/{bread}", file_name)
                 time.sleep(0.2)
             else:
-                isOk = base64_to_img(src, f"../dataset/{bread}", file_name)
+                isOk = base64_to_img(src, f"dataset/{bread}", file_name)
             if isOk:
                 print(f"Saving: {file_name}.jpg")
 
